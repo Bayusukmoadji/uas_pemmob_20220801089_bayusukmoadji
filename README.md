@@ -10,7 +10,7 @@
 - **Mata Kuliah:** Pemrograman Mobile  
 - **Nama:** Bayu Sukmo Adji  
 - **NIM:** 20220801089  
-- **Dosen Pengampu:** [Nama Dosen]  
+- **Dosen Pengampu:**  JEFRY SUNUPURWA ASRI , S.Kom., M.Kom. (8126) 
 - **Teknologi:** Flutter (Dart) & Laravel (PHP)  
 - **Database:** MySQL  
 
@@ -60,3 +60,41 @@ Aplikasi ini dibangun menggunakan **Flutter untuk frontend** dan **Laravel untuk
 ---
 
 ## 📂 **Struktur Folder**
+
+
+---
+
+## 📌 **Instalasi & Cara Menjalankan**
+### **1️⃣ Menjalankan Backend (Laravel)**
+```sh
+# Clone repositori
+git clone https://github.com/username/pengingat-belanja.git
+
+# Masuk ke folder backend Laravel
+cd backend
+
+# Install dependencies Laravel
+composer install
+
+# Konfigurasi database .env
+cp .env.example .env
+php artisan key:generate
+
+# Migrasi database
+php artisan migrate
+
+# Jalankan server Laravel
+php artisan serve
+
+
+# Masuk ke folder proyek Flutter
+cd pengingat_belanja
+
+# Install dependencies Flutter
+flutter pub get
+
+# Jalankan aplikasi
+flutter run
+
+
+<img width="703" alt="image" src="https://github.com/user-attachments/assets/07e7c809-0175-4d71-a06e-63dc6264c758" />

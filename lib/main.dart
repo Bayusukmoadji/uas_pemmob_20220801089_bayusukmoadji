@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/report_screen.dart'; // Pastikan ada file ini di folder screens
+import 'package:google_fonts/google_fonts.dart';
+import 'screens/report_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,11 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Reminder App',
+      title: 'Ingat Kantong Belanja!',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green, // Warna hijau untuk tema ramah lingkungan
+        textTheme: GoogleFonts.latoTextTheme(), // Font lebih modern
       ),
-      home: ReportScreen(), // Set halaman utama ke ReportScreen
+      home: ReportScreen(),
     );
   }
 }

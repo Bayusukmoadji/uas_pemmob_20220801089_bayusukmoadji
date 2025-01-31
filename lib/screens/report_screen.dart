@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
-import 'add_report_screen.dart'; // Import halaman tambah laporan
+import 'add_report_screen.dart';
+import 'report_detail_screen.dart'; // Import screen baru
 
 class ReportScreen extends StatefulWidget {
   @override
@@ -9,12 +10,9 @@ class ReportScreen extends StatefulWidget {
 
 class _ReportScreenState extends State<ReportScreen> {
   final ApiService apiService = ApiService();
-  late Future<List<dynamic>> reports;
 
-  @override
-  void initState() {
-    super.initState();
-    reports = apiService.getReports();
+  Future<List<dynamic>> fetchReports() async {
+    return await apiService.getReports();
   }
 
   @override
@@ -26,17 +24,14 @@ class _ReportScreenState extends State<ReportScreen> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.green.shade700, // Warna hijau sesuai tema
+        backgroundColor: Colors.green.shade700,
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          setState(() {
-            reports =
-                apiService.getReports(); // Refresh data saat swipe ke bawah
-          });
+          setState(() {});
         },
         child: FutureBuilder<List<dynamic>>(
-          future: reports,
+          future: fetchReports(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
@@ -102,8 +97,18 @@ class _ReportScreenState extends State<ReportScreen> {
                     ),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 18, color: Colors.grey),
-                    onTap: () {
-                      // Tambahkan aksi jika ingin melihat detail laporan
+                    onTap: () async {
+                      final result = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ReportDetailScreen(report: report),
+                        ),
+                      );
+
+                      if (result == true) {
+                        setState(() {}); // Refresh data setelah menghapus
+                      }
                     },
                   ),
                 );
@@ -120,10 +125,7 @@ class _ReportScreenState extends State<ReportScreen> {
           );
 
           if (result == true) {
-            setState(() {
-              reports = apiService
-                  .getReports(); // Refresh data jika laporan berhasil ditambahkan
-            });
+            setState(() {});
           }
         },
         backgroundColor: Colors.green.shade700,
